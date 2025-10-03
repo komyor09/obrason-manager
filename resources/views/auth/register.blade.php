@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div id="auth-left">
         <div class="auth-logo">
-            <a href="index.html"><img src="{{ asset('/images/logo/logo.png') }}" alt="Логотип"></a>
+            <a href="/"><img src="{{ asset('/images/logo/logo.png') }}" alt="Логотип"></a>
         </div>
         <h1 class="auth-title">Регистрация</h1>
         <p class="auth-subtitle mb-5">Введите ваши данные, чтобы зарегистрироваться на нашем сайте.</p>

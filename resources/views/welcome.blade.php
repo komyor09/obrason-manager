@@ -1001,7 +1001,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="#" class="logo">💧 ObRason CRM</a>
+            <a href="/"><img src="{{ asset('/images/logo/logo.png') }}" alt="Логотип"></a>
             <nav class="nav">
                 <a href="#home">Главная</a>
                 <a href="#features">Функции</a>

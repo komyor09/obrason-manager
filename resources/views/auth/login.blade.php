@@ -2,7 +2,7 @@
 
     <div id="auth-left">
         <div class="auth-logo">
-            <a href="index.html"><img src="{{ asset('/images/logo/logo.png') }}" alt="Логотип"></a>
+            <a href="/"><img src="{{ asset('/images/logo/logo.png') }}" alt="Логотип"></a>
         </div>
         <h1 class="auth-title">Вход в систему</h1>
         <p class="auth-subtitle mb-5">Войдите с помощью данных, которые вы указали при регистрации.</p>

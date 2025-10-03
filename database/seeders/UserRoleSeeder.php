@@ -12,7 +12,11 @@ class UserRoleSeeder extends Seeder
         $roles = [
             ['name' => 'admin'],
             ['name' => 'company_owner'],
-            ['name' => 'customer'],
+            ['name' => 'moderator'],
+            ['name' => 'deliver'],
+            ['name' => 'client'],
+            ['name' => 'accountant'],
+            ['name' => 'Marketer'],
         ];
 
         foreach ($roles as $role) {
