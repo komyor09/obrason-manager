@@ -1005,8 +1005,8 @@
             <nav class="nav">
                 <a href="#home">Главная</a>
                 <a href="#features">Функции</a>
-                <a href="#cases">Кейсы</a>
                 <a href="#pricing">Тарифы</a>
+                <a href="#cases">Кейсы</a>
                 <a href="#contact">Контакты</a>
             </nav>
             <div class="auth-buttons">
