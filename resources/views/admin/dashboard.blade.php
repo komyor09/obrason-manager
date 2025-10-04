@@ -118,7 +118,7 @@
                     <div class="card-body px-4 py-4-5">
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="stats-icon lime">
+                                <div class="stats-icon green">
                                     <i class="bi bi-cash-stack"></i>
                                 </div>
                             </div>

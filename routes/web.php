@@ -16,15 +16,12 @@ Route::get('/check-role', function () {
     return 'Роль пользователя: ' . ($user->role?->name ?? 'не задана');
 })->middleware('auth');
 
-// Все маршруты, доступные после авторизации
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    // Общий дашборд для всех авторизованных
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
-    // Доступ только для админа
     Route::middleware('role:admin')->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
@@ -39,7 +36,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         })->name('delivers');
     });
 
-    // Доступ только для курьеров
     Route::middleware('role:deliver')->group(function () {
         Route::get('/deliver/dashboard', function () {
             return view('deliver.dashboard');
@@ -64,7 +60,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         });
     });
 
-    // Общие маршруты для всех авторизованных пользователей
     Route::get('/client', function () {
         return view('client');
     })->name('client');
