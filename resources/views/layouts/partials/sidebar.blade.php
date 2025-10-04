@@ -4,7 +4,7 @@
 
     <x-maz-sidebar-item name="Панель управления" :link="route('dashboard')" icon="bi bi-grid-fill"></x-maz-sidebar-item>
     <x-maz-sidebar-item name="Заказы" :link="route('orders')" icon="bi bi-cart3"></x-maz-sidebar-item>
-    <x-maz-sidebar-item name="Доставшики" :link="route('delivers')" icon="bi bi-truck"></x-maz-sidebar-item>
+    <x-maz-sidebar-item name="Доставшики" :link="route('deliver.index')" icon="bi bi-truck"></x-maz-sidebar-item>
     <x-maz-sidebar-item name="Клиенты" :link="route('client')" icon="bi bi-people"></x-maz-sidebar-item>
     <x-maz-sidebar-item name="Товары" :link="route('products')" icon="bi bi-boxes"></x-maz-sidebar-item>
     <x-maz-sidebar-item name="Управление" icon="bi bi-gear">
