@@ -1,34 +1,92 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::group(['middleware' => ['auth', 'role:admin']], function () {
+
+// Для проверки роли (отладка)
+Route::get('/check-role', function () {
+    $user = Auth::user();
+    if (!$user) {
+        return 'Пользователь не авторизован';
+    }
+    return 'Роль пользователя: ' . ($user->role?->name ?? 'не задана');
+})->middleware('auth');
+
+// Все маршруты, доступные после авторизации
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    // Общий дашборд для всех авторизованных
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Доступ только для админа
+    Route::middleware('role:admin')->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
+        })->name('admin.dashboard');
+
+        Route::get('/orders', function () {
+            return view('orders');
+        })->name('orders');
+
+        Route::get('/delivers', function () {
+            return view('delivers');
+        })->name('delivers');
+    });
+
+    // Доступ только для курьеров
+    Route::middleware('role:deliver')->group(function () {
+        Route::get('/deliver/dashboard', function () {
+            return view('deliver.dashboard');
+        })->name('deliver.dashboard');
+
+        Route::group(['prefix' => 'deliver', 'as' => 'deliver.'], function () {
+            Route::get('/index', function () {
+                return view('deliver.index');
+            })->name('index');
+            Route::get('/create', function () {
+                return view('deliver.create');
+            })->name('create');
+            Route::get('/store', function () {
+                return view('deliver.store');
+            })->name('store');
+            Route::get('/edit', function () {
+                return view('deliver.edit');
+            })->name('edit');
+            Route::get('/destroy', function () {
+                return view('deliver.destroy');
+            })->name('destroy');
         });
     });
 
-    Route::group(['middleware' => ['auth', 'role:deliver']], function () {
-        Route::get('/deliver/dashboard', function () {
-            return view('deliver.dashboard');
-        });
+    // Общие маршруты для всех авторизованных пользователей
+    Route::get('/client', function () {
+        return view('client');
+    })->name('client');
+
+    Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+        Route::get('/index', function () {
+            return view('product.index');
+        })->name('index');
+        Route::get('/create', function () {
+            return view('product.create');
+        })->name('create');
+        Route::get('/show', function () {
+            return view('product.show');
+        })->name('show');
+        Route::get('/store', function () {
+            return view('product.store');
+        })->name('store');
+        Route::get('/edit', function () {
+            return view('product.edit');
+        })->name('edit');
+        Route::get('/destroy', function () {
+            return view('product.destroy');
+        })->name('destroy');
     });
 });
